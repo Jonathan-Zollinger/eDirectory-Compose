@@ -1,0 +1,60 @@
+Usage: gum spin <command> ...
+
+Display spinner while running a command
+
+Arguments:
+  <command> ...    Command to run
+
+Flags:
+  -h, --help                  Show context-sensitive help.
+  -v, --version               Print the version number
+
+      --show-output           Show output of command ($GUM_SPIN_SHOW_OUTPUT)
+  -s, --spinner="dot"         Spinner type ($GUM_SPIN_SPINNER)
+      --title="Loading..."    Text to display to user while spinning
+                              ($GUM_SPIN_TITLE)
+  -a, --align="left"          Alignment of spinner with regard to the title
+                              ($GUM_SPIN_ALIGN)
+
+Style Flags
+  --spinner.background=""         Background Color
+                                  ($GUM_SPIN_SPINNER_BACKGROUND)
+  --spinner.foreground="212"      Foreground Color
+                                  ($GUM_SPIN_SPINNER_FOREGROUND)
+  --spinner.border="none"         Border Style ($GUM_SPIN_SPINNER_BORDER)
+  --spinner.border-background=""
+                                  Border Background Color
+                                  ($GUM_SPIN_SPINNER_BORDER_BACKGROUND)
+  --spinner.border-foreground=""
+                                  Border Foreground Color
+                                  ($GUM_SPIN_SPINNER_BORDER_FOREGROUND)
+  --spinner.align="left"          Text Alignment ($GUM_SPIN_SPINNER_ALIGN)
+  --spinner.height=0              Text height ($GUM_SPIN_SPINNER_HEIGHT)
+  --spinner.width=0               Text width ($GUM_SPIN_SPINNER_WIDTH)
+  --spinner.margin="0 0"          Text margin ($GUM_SPIN_SPINNER_MARGIN)
+  --spinner.padding="0 0"         Text padding ($GUM_SPIN_SPINNER_PADDING)
+  --spinner.bold                  Bold text ($GUM_SPIN_SPINNER_BOLD)
+  --spinner.faint                 Faint text ($GUM_SPIN_SPINNER_FAINT)
+  --spinner.italic                Italicize text ($GUM_SPIN_SPINNER_ITALIC)
+  --spinner.strikethrough         Strikethrough text
+                                  ($GUM_SPIN_SPINNER_STRIKETHROUGH)
+  --spinner.underline             Underline text ($GUM_SPIN_SPINNER_UNDERLINE)
+  --title.background=""           Background Color ($GUM_SPIN_TITLE_BACKGROUND)
+  --title.foreground=""           Foreground Color ($GUM_SPIN_TITLE_FOREGROUND)
+  --title.border="none"           Border Style ($GUM_SPIN_TITLE_BORDER)
+  --title.border-background=""    Border Background Color
+                                  ($GUM_SPIN_TITLE_BORDER_BACKGROUND)
+  --title.border-foreground=""    Border Foreground Color
+                                  ($GUM_SPIN_TITLE_BORDER_FOREGROUND)
+  --title.align="left"            Text Alignment ($GUM_SPIN_TITLE_ALIGN)
+  --title.height=0                Text height ($GUM_SPIN_TITLE_HEIGHT)
+  --title.width=0                 Text width ($GUM_SPIN_TITLE_WIDTH)
+  --title.margin="0 0"            Text margin ($GUM_SPIN_TITLE_MARGIN)
+  --title.padding="0 0"           Text padding ($GUM_SPIN_TITLE_PADDING)
+  --title.bold                    Bold text ($GUM_SPIN_TITLE_BOLD)
+  --title.faint                   Faint text ($GUM_SPIN_TITLE_FAINT)
+  --title.italic                  Italicize text ($GUM_SPIN_TITLE_ITALIC)
+  --title.strikethrough           Strikethrough text
+                                  ($GUM_SPIN_TITLE_STRIKETHROUGH)
+  --title.underline               Underline text ($GUM_SPIN_TITLE_UNDERLINE)
+
