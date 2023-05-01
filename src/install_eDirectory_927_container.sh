@@ -114,5 +114,24 @@ build_edir_container() {
     fi
   done
 
-  docker run -it --name "${CONTAINER_NAME}" --stop-timeout 180 --restart on-failure:5 --memory="700M" --pids-limit="300" --volume "${VOLUME}":/config --network=host "${SOURCE_IMAGE}" new -t "${TREENAME}" -n "${SERVER_CONTEXT}" -S "${SERVER_NAME}" -B "${IP_PORT}" -o "${HTTP_PORT}" -O "${HTTPS_PORT}" -L "${LDAP_PORT}" -L "${SSL_PORT}" --CONFIGURE-EBA-NOW YES
+  docker run -it \
+    --name "${CONTAINER_NAME}" \
+    --stop-timeout 180 \
+    --restart on-failure:5 \
+    --memory=700M \
+    --pids-limit=300 \
+    --volume "${VOLUME}":/config \
+    --network=host \
+    "${SOURCE_IMAGE}" \
+      new \
+      -t "${TREENAME}" \
+      -n "${SERVER_CONTEXT}" \
+      -S "${SERVER_NAME}" \
+      -B "${IP_PORT}" \
+      -o "${HTTP_PORT}" \
+      -O "${HTTPS_PORT}" \
+      -L "${LDAP_PORT}" \
+      -l "${SSL_PORT}" \
+      --CONFIGURE-EBA-NOW YES
+
 }
