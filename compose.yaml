@@ -1,0 +1,19 @@
+services:
+  eDir:
+    command: new -t ${TREENAME} -a ${ADMIN_DN} -w ${ADMIN_SECRET} -n ${SERVER_CONTEXT} -S ${SERVER_NAME} -B ${IP}@${NCP_PORT} -o ${HTTP_PORT} -O ${HTTPS_PORT} -L ${LDAP_PORT} -l ${SSL_PORT} --configure-eba-now yes
+    container_name: 'edir' 
+    deploy:
+      resources:
+        limits:
+          memory: '700m'
+      restart_policy: 
+        condition: on-failure
+        max_attempts: 5
+    expose:
+      - 1389
+      - 1636
+      - 2524
+      - 1028
+    image: edirectory:9.2.7 # can use {EDIR_VERSION} to allow more than one release
+    network_mode: 'host'
+    pids_limit: 300
