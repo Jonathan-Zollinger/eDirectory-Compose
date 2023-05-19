@@ -69,7 +69,7 @@ build_edir_image() {
 
   dockerOutput=$(docker load -i "$1")
   if [[ $? ]]; then
-    return "${dockerOutput#Loaded image: }"
+    echo "${dockerOutput#Loaded image: }"
   fi
   return $?
 }
@@ -79,7 +79,6 @@ build_edir_image() {
 #
 # Globals:
 #   CONTAINER_NAME
-#   VOLUME
 #   SOURCE_IMAGE
 #   IP_PORT
 #   SERVER_CONTEXT
@@ -97,12 +96,14 @@ build_edir_image() {
 build_edir_container() {
   declare -A global_variables=(
   ["CONTAINER_NAME"]=$CONTAINER_NAME
-  ["VOLUME"]=$VOLUME
   ["SOURCE_IMAGE"]=$SOURCE_IMAGE
-  ["IP_PORT"]=$IP_PORT
+  ["IP"]=$IP
+  ["NCP_PORT"]=$NCP_PORT
   ["SERVER_CONTEXT"]=$SERVER_CONTEXT
   ["SERVER_NAME"]=$SERVER_NAME
   ["TREENAME"]=$TREENAME
+  ["ADMIN_DN"]=$ADMIN_DN
+  ["ADMIN_SECRET"]=$ADMIN_SECRET
   ["LDAP_PORT"]=$LDAP_PORT
   ["SSL_PORT"]=$SSL_PORT
   ["HTTP_PORT"]=$HTTP_PORT
@@ -111,27 +112,28 @@ build_edir_container() {
   for global_variable in "${!global_variables[@]}"; do
     if [[ -z "${global_variables[$global_variable]}" ]]; then
       err "the global variable '${global_variable}' is null." 
+      return 1
     fi
   done
 
-  docker run -it \
+  docker run -d \
     --name "${CONTAINER_NAME}" \
     --stop-timeout 180 \
     --restart on-failure:5 \
     --memory=700M \
     --pids-limit=300 \
-    --volume "${VOLUME}":/config \
     --network=host \
     "${SOURCE_IMAGE}" \
       new \
       -t "${TREENAME}" \
+      -a "${ADMIN_DN}" \
+      -w "${ADMIN_SECRET}" \
       -n "${SERVER_CONTEXT}" \
       -S "${SERVER_NAME}" \
-      -B "${IP_PORT}" \
+      -B "${IP}/${NCP_PORT}" \
       -o "${HTTP_PORT}" \
       -O "${HTTPS_PORT}" \
       -L "${LDAP_PORT}" \
       -l "${SSL_PORT}" \
-      --CONFIGURE-EBA-NOW YES
-
+      --configure-eba-now yes
 }
