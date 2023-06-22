@@ -34,7 +34,7 @@ err() {
 #   0 on success, non-zero on error
 #######################################
 unarchive_edirectory_tarball() {
-  if ! [[ $# -ne 1 ]]; then
+  if [[ $# -ne 1 ]]; then
     err "expected 1 argument, received $#"
     return
   elif [[ ! -e $1 ]]; then
